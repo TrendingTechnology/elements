@@ -1,5 +1,5 @@
 import React, { Fragment } from "react"
-import Input from "./src"
+import Input, { Field } from "./src"
 import { Container } from "@rent_avail/layout"
 import { Calendar } from "react-feather"
 
@@ -17,6 +17,14 @@ export function InputUsage() {
         mb="3rem"
         required
       />
+    </Container>
+  )
+}
+
+export function FieldUsage() {
+  return (
+    <Container mt="4rem">
+      <Field label="Full Name" required />
     </Container>
   )
 }

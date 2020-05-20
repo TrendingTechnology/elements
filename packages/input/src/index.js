@@ -188,4 +188,6 @@ function Input(
   )
 }
 
+export { default as Field } from "./field"
+
 export default memo(forwardRef(Input))
