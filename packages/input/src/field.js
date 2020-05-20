@@ -62,21 +62,27 @@ function Field(
     required,
     className,
     value,
+    iconLeft,
+    iconRight,
     onChange = noop,
     ...props
   },
   ref
 ) {
-  const [raised, setRaised] = useState(Boolean(value))
+  const dateField = type === "date"
+  const [raised, setRaised] = useState(Boolean(value || dateField))
   const styleProps = pick(props)
   const componentProps = omit(props)
   const classes = clsx(className, {
     required,
     raised,
     error,
+    iconLeft,
+    iconRight,
+    dateField,
   })
   function handleChange({ target: { value: inputValue } }) {
-    setRaised(inputValue.length > 0)
+    setRaised(inputValue.length > 0 || dateField)
   }
   return (
     <FieldWrapper {...styleProps} className={classes}>
