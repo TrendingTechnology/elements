@@ -8,7 +8,7 @@ import React, {
   useEffect,
   useState,
   useImperativeHandle,
-  useMemo
+  useMemo,
 } from "react"
 import styled, { css } from "styled-components"
 import Popover from "src/popover"
@@ -26,14 +26,14 @@ const types = {
   UPDATE_WIDTH: "@rent_avail/elements/select/update_width",
   UPDATE_INPUT: "@rent_avail/elements/select/update_input",
   SET_VALUE: "@rent_avail/elements/select/set_value",
-  SET_ERROR: "@rent_avail/elements/select/set_value"
+  SET_ERROR: "@rent_avail/elements/select/set_value",
 }
 
 const initialState = {
   selectValue: "",
   inputValue: "",
   width: 120,
-  isOpen: false
+  isOpen: false,
 }
 
 function selectReducer(state, action) {
@@ -58,7 +58,7 @@ function Select({ children, id, onSelect = noop, disabled = false, defaultValue 
   const listRef = useRef()
   const [state, dispatch] = useReducer(selectReducer, {
     ...initialState,
-    selectValue: defaultValue
+    selectValue: defaultValue,
   })
   const context = useMemo(
     () => ({
@@ -68,7 +68,7 @@ function Select({ children, id, onSelect = noop, disabled = false, defaultValue 
       dispatch,
       onSelect,
       id,
-      disabled
+      disabled,
     }),
     [state, dispatch, id, disabled, inputRef, listRef, onSelect]
   )
@@ -177,7 +177,7 @@ function Input(
     state: { inputValue, selectValue, isOpen },
     listRef,
     inputRef,
-    dispatch
+    dispatch,
   } = useContext(SelectContext)
   function handleFocus() {
     dispatch({ type: types.OPEN_LIST })
@@ -242,7 +242,7 @@ function List({ children, style, ...props }, ref) {
     dispatch,
     listRef,
     inputRef,
-    id
+    id,
   } = useContext(SelectContext)
   const inputBounds = useWindowResize(inputRef)
   function position({ popover: popoverRect, target: targetRect }) {
@@ -251,7 +251,7 @@ function List({ children, style, ...props }, ref) {
     return {
       top: `${top}px`,
       left: `${targetRect.left + window.pageXOffset}px`,
-      visibility: "visible"
+      visibility: "visible",
     }
   }
   function handleBlur({ target }) {
@@ -270,10 +270,7 @@ function List({ children, style, ...props }, ref) {
       const { top } = input.getBoundingClientRect()
       const { height } = list.getBoundingClientRect()
       const fromBottom = window.innerHeight - height
-      window.scrollBy({
-        top: Math.max(top - fromBottom + 120, 0),
-        behavior: "smooth"
-      })
+      setTimeout(() => window.scrollBy(0, Math.max(top - fromBottom + 120, 0)), 20)
       document.addEventListener("click", handleBlur)
     }
     return () => document.removeEventListener("click", handleBlur)
@@ -323,7 +320,7 @@ function Item(
   const {
     state: { currentValue, inputValue },
     onSelect,
-    dispatch
+    dispatch,
   } = useContext(SelectContext)
   const [visibility, setVisibility] = useState(true)
   const itemRef = useRef()
