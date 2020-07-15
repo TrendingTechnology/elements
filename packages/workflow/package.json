@@ -1,0 +1,38 @@
+{
+  "name": "@rent_avail/workflow",
+  "version": "0.0.1",
+  "description": "Workflow component",
+  "source": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo 'run tests from the root directory'",
+    "build": "microbundle --no-compress --jsx React.createElement",
+    "prepublishOnly": "yarn build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "contributors": [
+    "Patrick Krawczykowski <patrick@dreadful.design>"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-is": "^16.13.1",
+    "styled-components": "^5.1.1"
+  },
+  "dependencies": {
+    "@rent_avail/base": "^0.1.4",
+    "@rent_avail/layout": "^0.1.5",
+    "@rent_avail/utils": "^0.1.4",
+    "clsx": "^1.1.0",
+    "framer-motion": "^1.10.3",
+    "react-feather": "^2.0.4",
+    "styled-system": "^5.1.5"
+  }
+}
