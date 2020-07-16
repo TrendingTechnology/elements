@@ -36,6 +36,10 @@ const StyledCheckbox = styled.label`
 
   input:disabled ~ .input__target {
     border: 2px solid ${colors.ui_500};
+    background: ${colors.ui_300};
+  }
+
+  input:disabled:checked ~ .input__target {
     background: ${colors.ui_500};
   }
 
