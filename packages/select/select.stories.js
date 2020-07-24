@@ -1,11 +1,12 @@
 import React, { useState } from "react"
 import { Heading } from "@rent_avail/typography"
-import { Container } from "@rent_avail/layout"
+import { Container, Grid, Col } from "@rent_avail/layout"
+import Input from "@rent_avail/input"
 import { Select, SelectInput, SelectList, SelectItem } from "./src"
 
 export default { title: "Select" }
 
-function SelectExample() {
+export function BasicUsage() {
   const options = [
     { label: "Alabama", value: "AL" },
     { label: "Alaska", value: "AK" },
@@ -17,146 +18,51 @@ function SelectExample() {
   ]
   const [state, setState] = useState("")
   return (
-    <Container mt="4rem">
-      <Heading mb="2rem">{state || "Select a value"}</Heading>
-      <Select id="select-id" onSelect={(value) => setState(value)}>
-        <SelectInput label="Choose a state" />
-        <SelectList>
-          {options.map(({ label, value }) => (
-            <SelectItem key={value} value={value} label={label}>
-              {label}
-            </SelectItem>
-          ))}
-        </SelectList>
-      </Select>
+    <Container my="4rem">
+      <Grid gridAutoFlow="row dense">
+        <Col
+          as={Input}
+          span={[12, 8, 8]}
+          label="Street Address"
+          autoComplete="address-line1"
+        />
+        <Col
+          as={Input}
+          span={[5, 4, 4]}
+          label="Apt."
+          autoComplete="address-line2"
+        />
+        <Col
+          as={Input}
+          label="City"
+          span={[7, 3]}
+          autoComplete="address-level2"
+        />
+        <Col span={[6, 3]}>
+          <Select id="select-id" onSelect={(value) => setState(value)}>
+            <SelectInput label="State" autoComplete="address-level1" />
+            <SelectList>
+              {options.map(({ label, value }) => (
+                <SelectItem key={value} value={value} label={label}>
+                  {label}
+                </SelectItem>
+              ))}
+            </SelectList>
+          </Select>
+        </Col>
+        <Col
+          as={Input}
+          label="Zip Code"
+          span={[6, 3]}
+          autoComplete="postal-code"
+        />
+        <Col
+          as={Input}
+          label="Country"
+          span={[12, 3]}
+          autoComplete="country-name"
+        />
+      </Grid>
     </Container>
-  )
-}
-
-export function Basic() {
-  return (
-    <div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <SelectExample />
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos
-        aliquam porro enim dicta! Impedit minus velit dicta praesentium
-        dignissimos rem error rerum cumque repellat nulla veritatis, labore,
-        ipsum facere?
-      </p>
-    </div>
   )
 }

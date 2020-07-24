@@ -11,7 +11,7 @@ import React, {
   useMemo,
 } from "react"
 import styled, { css } from "styled-components"
-import Popover, { getPosition } from "@rent_avail/popover"
+import Popover from "@rent_avail/popover"
 import { Card } from "@rent_avail/layout"
 import { wrapEvent, noop, useWindowResize } from "@rent_avail/utils"
 import { ChevronDown } from "react-feather"
@@ -222,6 +222,7 @@ function Input(
         onChange={wrapEvent(onChange, handleChange)}
         onFocus={wrapEvent(onFocus, handleFocus)}
         onKeyDown={wrapEvent(onKeyDown, handleKeyDown)}
+        autoComplete="off"
       />
       <div className="select__label-row">
         <span className="select__label">{label}</span>
@@ -348,17 +349,26 @@ function Item(
   const [visibility, setVisibility] = useState(true)
   const itemRef = useRef()
   function selectValue({ target }) {
-    console.log(target.dataset.value)
     dispatch({ type: types.SET_VALUE, payload: target.dataset.value })
     onSelect(target.dataset.value)
   }
   function handleKeyDown({ key, target }) {
     const itemEl = itemRef.current
-    if (key === "ArrowDown" && itemEl.nextSibling) itemEl.nextSibling.focus()
-    if (key === "ArrowUp" && itemEl.previousSibling)
-      itemEl.previousSibling.focus()
-    if (key === "Enter") selectValue({ target })
-    if (key === "Escape") dispatch({ type: types.CLOSE_LIST })
+    switch (key) {
+      case "ArrowDown":
+        itemEl.nextSibling?.focus()
+        break
+      case "ArrowUp":
+        itemEl.previousSibling?.focus()
+        break
+      case "Enter":
+        selectValue({ target })
+        break
+      case "Escape":
+        dispatch({ type: types.CLOSE_LIST })
+      default:
+        break
+    }
   }
   useImperativeHandle(ref, () => ({ ...itemRef }))
   useEffect(() => {
